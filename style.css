@@ -9,7 +9,7 @@ h1{
 
 .options ul{
     list-style-type: none;  
-    padding-left: 180px;
+    padding-left: 550px;
     margin: 0px;
     font-size: 20px;
     display: flex;   
@@ -46,4 +46,11 @@ h1{
     height: 50px;
     width: 90px;
 }
- 
+ #add{
+    height: 30px;
+    width: 50px;
+    border-radius: 5px;
+ }
+#books{
+    background-color: aliceblue;
+}
