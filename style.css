@@ -1,0 +1,49 @@
+
+body{
+    background-color: antiquewhite;
+}
+
+h1{
+    text-align: center;  
+}
+
+.options ul{
+    list-style-type: none;  
+    padding-left: 180px;
+    margin: 0px;
+    font-size: 20px;
+    display: flex;   
+    gap: 20px;
+    
+    
+}
+#Reading{
+    background-color: #7c4700;
+    border-color: #7c4700;
+    color: antiquewhite;
+    font-size: medium;
+    border-radius: 5px;
+    height: 50px;
+    width: 90px;
+}
+
+#TBR{
+    background-color: #7c4700;
+    border-color: #7c4700;
+    color: antiquewhite;
+    font-size: medium;
+    border-radius: 5px;
+    height: 50px;
+    width: 90px;
+}
+
+#Finished{
+    background-color: #7c4700;
+    border-color: #7c4700;
+    color: antiquewhite;
+    font-size: medium;
+    border-radius: 5px;
+    height: 50px;
+    width: 90px;
+}
+ 
