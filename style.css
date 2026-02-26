@@ -1,57 +1,60 @@
 
 body{
-    background-color: antiquewhite;
+    background-color:whitesmoke;
     margin: 0px;
 }
 
 h1{
     text-align: center;  
 }
+.container{
+   display: flex;
+   column-gap: 10px;
+}
 
-.options ul{
-    list-style-type: none;  
-    padding: 5px;
-    margin: 0px;
-    font-size: 20px;
-      
-    gap: 30px;
+.sidebar{
+    grid-area: sidebar;
+    height: 100vw;
+    width: 150px;
+    background-color:cadetblue;
+}
+#filter-options{
+    list-style-type: none;
     
+}
+#op{
+    width: 100px;
+    height: 25px;
     
-}
-#Reading{
-    background-color: #7c4700;
-    border-color: #7c4700;
-    color: antiquewhite;
-    font-size: medium;
-    border-radius: 5px;
-    height: 50px;
-    width: 90px;
-}
-
-#TBR{
-    background-color: #7c4700;
-    border-color: #7c4700;
-    color: antiquewhite;
-    font-size: medium;
-    border-radius: 5px;
-    height: 50px;
-    width: 90px;
-}
-
-#Finished{
-    background-color: #7c4700;
-    border-color: #7c4700;
-    color: antiquewhite;
-    font-size: medium;
-    border-radius: 5px;
-    height: 50px;
-    width: 90px;
 }
  #add{
     height: 30px;
     width: 50px;
     border-radius: 5px;
+    background-color: #006663;
+    color: white;
  }
-#books{
-    background-color: aliceblue;
+
+.popup-container{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    opacity: 0;
+}
+.popup-container.show{
+    pointer-events: auto;
+    opacity: 1;
+}
+.popup{
+    background-color: white;
+    max-width: 100%;
+    padding: 30px 50px;
+    border-radius: 5px;
 }

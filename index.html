@@ -6,23 +6,35 @@
 </head>
 <body>
     <h1>Book Tracker</h1>
-    <nav class="options">
-        <ul>
-            <li><button id="Reading">Reading</button></li>
-            <li><button id="TBR">To Be Read</button></li>
-            <li><button id="Finished">Finished</button></li>
-        </ul>
-    </nav>
+    <div class="container">
+        <div class="sidebar">
+            <ul id="filter-options">
+                <li><button id = "op">All</button></li>
+                <li><button id="op">Reading</button></li>
+                <li><button id="op">To Be Read</button></li>
+                <li><button id="op">Finished</button></li>
+            </ul>
+        </div>
+        <button id="add">add</button>
+        <div class="popup-container" id="popup-container">
+            <div class="popup">
+                <p>yo!</p>
 
-    <h3>All:</h3>
-    <button id="add">add</button>
-    
-    <div class="books">
-        <ul id="all books">
-            <li>Abigale</li>
-        </ul>
+                <button id="close">Enter</button>
+            </div>
+        </div>
+
+    <div class="main">
+        <h3>All:</h3>
+        <div class="books">
+            <aside class="desplay">
+                <ul id="all books">
+                    <li>Abigale</li>
+                </ul>
+        </aside>
+        </div>
     </div>
-
+</div>
 <script src="scripts.js"></script>
 </body>
 </html> 
