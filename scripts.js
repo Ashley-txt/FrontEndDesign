@@ -1,13 +1,35 @@
-const addButton = document.getElementById("add");
-const enterButton = document.getElementById("enter");
-const popup = document.getElementById("popup-container");
+let title;
+let stat;
 
-var readingButton, finishedButton, allButton, tbrButton;
+const books = [];
 
-addButton.addEventListener("click", () => {
-    popup.classList.add("show");
-});
+function popupFn(){
+    document.getElementById("overlay").style.display = "block";
+    document.getElementById("popupBox").style.display = "block";
+}
+//user input to insert book title and reading status -> push to array
+document.getElementById("submit").onclick = function(event){
+    event.preventDefault();
+    title = document.getElementById("title").value;
+    stat = document.getElementById("reading-stat").value;
+    
+    console.log(title);
+    console.log(stat);
 
-enterButton.addEventListener("click", ()=>{
-    document.body.style.backgroundColor = "#9EA9B1";
-});
+    let object = {titleofbooks: title, reading: stat};
+    books.push(object);
+
+    document.getElementById("overlay").style.display = "none";
+    document.getElementById("popupBox").style.display = "block";    
+}
+//prints all books
+document.getElementById("all").onclick = function(){
+    let main = document.getElementById("main");
+    books.forEach(books =>{
+        let item = document.createElement('P');
+        let itemtext = document.createTextNode(`${books.titleofbooks}: ${books.reading}`);
+        item.appendChild(itemtext);
+        main.appendChild(item);
+    });
+
+}

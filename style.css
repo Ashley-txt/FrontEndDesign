@@ -7,16 +7,13 @@ body{
 h1{
     text-align: center;  
 }
+  .filter{
+    display: flex;
+    justify-content: center;
+  }
 .container{
    display: flex;
    column-gap: 10px;
-}
-
-.sidebar{
-    grid-area: sidebar;
-    height: 100vw;
-    width: 150px;
-    background-color:cadetblue;
 }
 #filter-options{
     list-style-type: none;
@@ -28,33 +25,39 @@ h1{
     
 }
  #add{
-    height: 30px;
-    width: 50px;
+    
+   width: 80px;
+    height: 40px;
     border-radius: 5px;
-    background-color: #006663;
-    color: white;
+    background-color: rgb(62, 111, 113);
+    color: #fff;
+
+ }
+ .main{
+    position: flex;
+   
  }
 
-.popup-container{
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    height: 100vh;
-    width: 100vw;
-    background-color: rgba(0, 0, 0, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    opacity: 0;
-}
-.popup-container.show{
-    pointer-events: auto;
-    opacity: 1;
-}
-.popup{
-    background-color: white;
-    max-width: 100%;
-    padding: 30px 50px;
-    border-radius: 5px;
-}
+    #popupBox {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            
+        }
+
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }

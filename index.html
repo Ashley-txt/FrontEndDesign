@@ -3,36 +3,43 @@
 <head>
   <title>Book Tracker</title>
   <link href="style.css" rel="stylesheet"> 
+  <h1>Book Tracker</h1>
 </head>
-<body>
-    <h1>Book Tracker</h1>
-    <div class="container">
-        <div class="sidebar">
-            <ul id="filter-options">
-                <li><button id = "op">All</button></li>
-                <li><button id="op">Reading</button></li>
-                <li><button id="op">To Be Read</button></li>
-                <li><button id="op">Finished</button></li>
-            </ul>
-        </div>
-        <button id="add">add</button>
-        <div class="popup-container" id="popup-container">
-            <div class="popup">
-                <p>yo!</p>
+<body>   
+    <!--Filter list-->
+    <div class="filter">
+        <button id = "all">All</button>
+        <button id="Reading">Reading</button>
+        <button id = "Planning">Planning To Read</button>
+        <button id = "Finished">Finished</button>   
+    </div>
 
-                <button id="close">Enter</button>
+
+     <div class="container">  
+     <!--popup-->
+        <button onclick="popupFn()", id = "add">add</button>
+        <div id="overlay">
+            <div id="popupBox">
+              <!--input fields-->
+        <form id = "insertObj">
+            <!--insert book title-->
+            <label>Title:</label>
+            <input type="text" name="title" id="title" required>
+            <!--reading status-->
+            <label for="reading-stat">Reading Status:</label>
+            <select id="reading-stat" name="reading-stat">
+                <option value="reading">Reading</option>
+                <option value="planning">Plan To Read</option>
+                <option value="finished">Finished</option>
+            </select>
+            
+            <button type="submit" id="submit">submit</button>
+        </form>  
             </div>
         </div>
 
-    <div class="main">
-        <h3>All:</h3>
-        <div class="books">
-            <aside class="desplay">
-                <ul id="all books">
-                    <li>Abigale</li>
-                </ul>
-        </aside>
-        </div>
+    <div id="main">
+      <p><br>Books:</p>
     </div>
 </div>
 <script src="scripts.js"></script>
