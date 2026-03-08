@@ -26,16 +26,20 @@ h1{
 }
  #add{
     
-   width: 80px;
-    height: 40px;
-    border-radius: 5px;
+   width: 60px;
+    height: 35px;
+    border-radius: 15px;
+    position: relative;
+    left: 75px;
+    top: 15px;
     background-color: rgb(62, 111, 113);
     color: #fff;
 
  }
- .main{
-    position: flex;
-   
+ #main{
+    position: relative;
+    top: 10px;
+    left: 100px;
  }
 
     #popupBox {
@@ -61,3 +65,9 @@ h1{
             background: rgba(0, 0, 0, 0.5);
             z-index: 999;
         }
+    #list li{
+        margin-bottom: 10px;
+    }
+    #list li:last-child{
+        margin-bottom: 0px;
+    }
