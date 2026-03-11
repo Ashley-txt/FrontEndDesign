@@ -1,10 +1,18 @@
-let title;
-let stat;
-let author;
-let genre;
-let deletebtn = document.getElementById("delete")
+let list = document.getElementById('list')
+let editId = null;
+let bookList = document.getElementById("bookList");
+let mode = "view";
 
 let books = JSON.parse(localStorage.getItem("books")) || [];
+
+document.getElementById("delete").onclick = function(){
+    bookList.innerHTML = "Delete:";
+    mode = "delete";
+}
+document.getElementById("edit").onclick = function(){
+    bookList.innerHTML = "Edit:";
+    mode = "edit";
+}
 
 function popupFn(){
     document.getElementById("overlay").style.display = "block";
@@ -15,23 +23,34 @@ function popupFn(){
 document.getElementById("submit").onclick = function(event){
     event.preventDefault();
     //read values
-    title = document.getElementById("title").value;
-    stat = document.getElementById("reading-stat").value;
-    author = document.getElementById("author").value;
-    genre = document.getElementById("genre").value;
+    let title = document.getElementById("title").value;
+    let stat = document.getElementById("reading-stat").value;
+    let author = document.getElementById("author").value;
+    let genre = document.getElementById("genre").value;
     
 
     //store values as obj -> add to arr
-    let object = {id: Date.now(),"titleofbooks": title, "author": author, "reading": stat, "genre": genre};
+    if(editId == null){
+        books.push({
+            id: Date.now(),
+        "titleofbooks": title, 
+        "author": author, 
+        "reading": stat, 
+        "genre": genre
+        });
+    }else{
+        
+        let book = books.find(book => book.id === editId);
+        book.titleofbooks = title;
+        book.author = author;
+        book.genre = genre;
+        book.reading = stat;
 
-    books.push(object);
-
-    let list = document.getElementById("list");
-    let li = document.createElement('li');
-    li.innerText = object.titleofbooks + "\n" + object.author + "\n" + object.genre +"\n" +object.reading;
-     list.append(li);
-
-     console.log(books);
+        editId = null;
+        renderBooks();
+    }
+    renderBooks();
+ 
     localStorage.setItem("books", JSON.stringify(books));
 
     document.getElementById("overlay").style.display = "none";
@@ -44,33 +63,47 @@ document.getElementById("cancel").onclick = function(){
     document.getElementById("popupBox").style.display = "block"; 
 }
 
+function renderBooks(){
+    list.innerHTML = "";
+
+    books.forEach(read => {
+       let li = document.createElement('li');
+       li.innerHTML = 
+            read.titleofbooks + "<br>" + 
+            read.author + "<br>" + 
+            read.genre + "<br>" + 
+            read.reading;
+            
+       list.appendChild(li);
+    });
+}
+
 //prints all books
 document.getElementById("all").onclick = function(event){   
     event.preventDefault();
-    let list = document.getElementById('list'); 
     list.innerHTML = "";
 
     let reader = books;
 
     reader.forEach(read => {
        let li = document.createElement('li');
-       li.innerHTML = read.titleofbooks + "<br>" + read.author + "<br>" + read.genre + "<br>" + read.reading;
+       li.innerHTML = 
+            read.titleofbooks + "<br>" + 
+            read.author + "<br>" + 
+            read.genre + "<br>" + 
+            read.reading;
+
        li.dataset.id = read.id;
        list.appendChild(li);
     });
-
-    document.getElementById("edit").onclick = editBook();
-    document.getElementById("delete").onclick = deleteBook();
 }
 //filter by reading
 document.getElementById("Reading-btn").onclick = function(event){
-    event.preventDefault();
-    let list = document.getElementById('list'); 
+    event.preventDefault();  
     list.innerHTML = "";
     let reader = books.filter((b) => b.reading === "Reading");
 
-    let x = document.getElementById("bookList");
-    x.innerHTML = "Reading List:"
+   bookList.innerHTML = "Reading List:"
 
     reader.forEach(read => {
        let li = document.createElement('li');
@@ -78,17 +111,14 @@ document.getElementById("Reading-btn").onclick = function(event){
        li.dataset.id = read.id;
        list.appendChild(li);
     });
-    document.getElementById("edit").onclick = editBook();
-  document.getElementById("delete").onclick = deleteBook();
 }
+
 //sort by planning
 document.getElementById("Planning-btn").onclick = function(event){
     event.preventDefault();
-    let list = document.getElementById('list'); 
     list.innerHTML = "";
 
-    let x = document.getElementById("bookList");
-    x.innerHTML = "Planning:"
+    bookList.innerHTML = "Planning:"
     
     let reader = books.filter((b) => b.reading == "Planning");
 
@@ -98,17 +128,15 @@ document.getElementById("Planning-btn").onclick = function(event){
        li.dataset.id = read.id;
        list.appendChild(li);
     });
-    document.getElementById("edit").onclick = editBook();
-  document.getElementById("delete").onclick = deleteBook();
+
 }
 //sort by finished
 document.getElementById("Finished-btn").onclick = function(event){
     event.preventDefault();
-    let list = document.getElementById('list')
+    
     list.innerHTML = "";
 
-    let x = document.getElementById("bookList");
-    x.innerHTML = "Finished:"
+    bookList.innerHTML = "Finished:"
     
     let reader = books.filter((b) => b.reading == "Finished");
 
@@ -118,42 +146,41 @@ document.getElementById("Finished-btn").onclick = function(event){
        li.dataset.id = read.id;
        list.appendChild(li);
     });
-    document.getElementById("edit").onclick = editBook();
-  document.getElementById("delete").onclick = deleteBook();
 }
 
-//edit
-function editBook(index){
-    editIndex = index;
+list.addEventListener("click", function(event){
+    let li = event.target.closest("li");
 
-    document.getElementById("titleofbook").value = books[index].title;
-    document.getElementById("author").value = books[index].title;
-    document.getElementById("reading").value = books[index].title;
-    document.getElementById("genre").value = books[index].title;
+    if(!li) return;
+    let id = Number(li.dataset.id);
+console.log(books);
+    if(mode === "delete"){
+        let result = confirm("Do you want to delete this book?");
 
-}
+        if(!result) return;
+        books = books.filter(book => book.id !== id);
+        localStorage.setItem("books", JSON.stringify(books));
 
-function deleteBook(){
-    list.addEventListener('click', function(event){
+        li.remove();
+    }
 
-        let li = event.target.closest("li");
+    if(mode === "edit"){
+        let book = books.find(book => book.id === id);
         
-        if(!li) return;
-        let id = Number(li.dataset.id);
+        document.getElementById("title").value = book.titleofbooks;
+        document.getElementById("author").value = book.author;
+        document.getElementById("genre").value = book.genre;
+        document.getElementById("reading-stat").value = book.reading;
+        
 
-        var result = confirm("Want to delete?");
+        editId = id;
+        popupFn();
 
-        if(result){
-
-            books = books.filter(book => book.id !==id);
-            localStorage.setItem("books", JSON.stringify(books));
-            li.remove(); 
-
-        }
-
-    });
+    }
     
-}
+});
+    
+
 
 window.onload = function(){
 
@@ -172,7 +199,6 @@ window.onload = function(){
         li.dataset.id = book.id;
 
         list.appendChild(li);
-
     });
 
 };
