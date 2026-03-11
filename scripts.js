@@ -49,7 +49,7 @@ document.getElementById("submit").onclick = function(event){
         editId = null;
         renderBooks();
     }
-    renderBooks();
+    renderBooks(books);
  
     localStorage.setItem("books", JSON.stringify(books));
 
@@ -63,10 +63,10 @@ document.getElementById("cancel").onclick = function(){
     document.getElementById("popupBox").style.display = "block"; 
 }
 
-function renderBooks(){
+function renderBooks(filtered){
     list.innerHTML = "";
 
-    books.forEach(read => {
+    filtered.forEach(read => {
        let li = document.createElement('li');
        li.innerHTML = 
             read.titleofbooks + "<br>" + 
@@ -83,19 +83,18 @@ document.getElementById("all").onclick = function(event){
     event.preventDefault();
     list.innerHTML = "";
 
-    let reader = books;
+    renderBooks(books);
+    // reader.forEach(read => {
+    //    let li = document.createElement('li');
+    //    li.innerHTML = 
+    //         read.titleofbooks + "<br>" + 
+    //         read.author + "<br>" + 
+    //         read.genre + "<br>" + 
+    //         read.reading;
 
-    reader.forEach(read => {
-       let li = document.createElement('li');
-       li.innerHTML = 
-            read.titleofbooks + "<br>" + 
-            read.author + "<br>" + 
-            read.genre + "<br>" + 
-            read.reading;
-
-       li.dataset.id = read.id;
-       list.appendChild(li);
-    });
+    //    li.dataset.id = read.id;
+    //    list.appendChild(li);
+    // });
 }
 //filter by reading
 document.getElementById("Reading-btn").onclick = function(event){
@@ -104,13 +103,13 @@ document.getElementById("Reading-btn").onclick = function(event){
     let reader = books.filter((b) => b.reading === "Reading");
 
    bookList.innerHTML = "Reading List:"
-
-    reader.forEach(read => {
-       let li = document.createElement('li');
-       li.innerHTML = read.titleofbooks + "<br>" + read.author + "<br>" + read.genre;
-       li.dataset.id = read.id;
-       list.appendChild(li);
-    });
+    renderBooks(reader);
+    // reader.forEach(read => {
+    //    let li = document.createElement('li');
+    //    li.innerHTML = read.titleofbooks + "<br>" + read.author + "<br>" + read.genre;
+    //    li.dataset.id = read.id;
+    //    list.appendChild(li);
+    // });
 }
 
 //sort by planning
@@ -121,13 +120,13 @@ document.getElementById("Planning-btn").onclick = function(event){
     bookList.innerHTML = "Planning:"
     
     let reader = books.filter((b) => b.reading == "Planning");
-
-  reader.forEach(read => {
-       let li = document.createElement('li');
-       li.innerHTML = read.titleofbooks + "<br>" + read.author + "<br>" + read.genre;
-       li.dataset.id = read.id;
-       list.appendChild(li);
-    });
+    renderBooks(reader);
+//   reader.forEach(read => {
+//        let li = document.createElement('li');
+//        li.innerHTML = read.titleofbooks + "<br>" + read.author + "<br>" + read.genre;
+//        li.dataset.id = read.id;
+//        list.appendChild(li);
+//     });
 
 }
 //sort by finished
@@ -139,13 +138,13 @@ document.getElementById("Finished-btn").onclick = function(event){
     bookList.innerHTML = "Finished:"
     
     let reader = books.filter((b) => b.reading == "Finished");
-
-  reader.forEach(read => {
-       let li = document.createElement('li');
-       li.innerHTML = read.titleofbooks + "<br>" + read.author + "<br>" + read.genre;
-       li.dataset.id = read.id;
-       list.appendChild(li);
-    });
+    renderBooks(reader);
+//   reader.forEach(read => {
+//        let li = document.createElement('li');
+//        li.innerHTML = read.titleofbooks + "<br>" + read.author + "<br>" + read.genre;
+//        li.dataset.id = read.id;
+//        list.appendChild(li);
+//     });
 }
 
 list.addEventListener("click", function(event){
