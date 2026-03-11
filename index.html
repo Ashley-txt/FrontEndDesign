@@ -18,6 +18,7 @@
      <div class="container">  
      <!--popup-->
         <button onclick="popupFn()", id = "add">add</button>
+        <button id = "delete">delete</button><button id="edit">edit</button>
         <div id="overlay">
             <div id="popupBox">
               <!--input fields-->
@@ -44,16 +45,16 @@
             <label for="genre">Genre:</label>
             <input type="text" name="genre" id="genre">
             <br>
-            
+
             <button type="submit" id="submit">submit</button>
             <button id="cancel">cancel</button>
         </form>  
             </div>
         </div>
-
+        <!--edit-->
     <div id="main">
         <br>
-        <p>Books:</p>
+        <p id="bookList">Books:</p>
        <ul id="list"></ul>
     </div>
 </div>

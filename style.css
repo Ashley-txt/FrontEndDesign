@@ -1,7 +1,7 @@
 
 body{
-    background-color:whitesmoke;
     margin: 0px;
+    background-color: rgb(179, 190, 202);
 }
 
 h1{
@@ -29,19 +29,37 @@ h1{
    width: 60px;
     height: 35px;
     border-radius: 15px;
-    position: relative;
-    left: 75px;
+    position: flex;
+    left: 100px;
     top: 15px;
     background-color: rgb(62, 111, 113);
-    color: #fff;
+    color: #e3e3e3;
 
+ }
+ #delete{
+    width: 70px;
+    height: 30px;
+    position: flex;
+    left: 70px;
+    top: 15px;
+    border-radius: 5px;
+    border-color: #fff9f9;
  }
  #main{
-    position: relative;
-    top: 10px;
-    left: 100px;
+    position: flex;
+    top: 30px;
  }
 
+  #edit{
+        position: flex;
+        width: 50px;
+        height: 30px;
+        left: 75px;
+        top: 16px;
+        border-radius: 10px;
+        border-color: #e3e3e3;
+        background-color: rgb(234, 234, 234);
+    }
     #popupBox {
             display: none;
             position: fixed;
@@ -65,9 +83,20 @@ h1{
             background: rgba(0, 0, 0, 0.5);
             z-index: 999;
         }
+    
+        #bookList{
+            font-size: large;
+            font-weight: bold;
+        }
     #list li{
+        cursor: pointer;
+        padding: 5px;
         margin-bottom: 10px;
     }
     #list li:last-child{
         margin-bottom: 0px;
     }
+    #list li:hover{
+        background-color: #f0f0f0;;
+   }
+   
