@@ -73,7 +73,7 @@ function renderBooks(filtered){
             read.author + "<br>" + 
             read.genre + "<br>" + 
             read.reading;
-            
+            li.dataset.id = read.id;
        list.appendChild(li);
     });
 }
@@ -84,17 +84,7 @@ document.getElementById("all").onclick = function(event){
     list.innerHTML = "";
 
     renderBooks(books);
-    // reader.forEach(read => {
-    //    let li = document.createElement('li');
-    //    li.innerHTML = 
-    //         read.titleofbooks + "<br>" + 
-    //         read.author + "<br>" + 
-    //         read.genre + "<br>" + 
-    //         read.reading;
-
-    //    li.dataset.id = read.id;
-    //    list.appendChild(li);
-    // });
+   
 }
 //filter by reading
 document.getElementById("Reading-btn").onclick = function(event){
@@ -104,12 +94,7 @@ document.getElementById("Reading-btn").onclick = function(event){
 
    bookList.innerHTML = "Reading List:"
     renderBooks(reader);
-    // reader.forEach(read => {
-    //    let li = document.createElement('li');
-    //    li.innerHTML = read.titleofbooks + "<br>" + read.author + "<br>" + read.genre;
-    //    li.dataset.id = read.id;
-    //    list.appendChild(li);
-    // });
+
 }
 
 //sort by planning
@@ -121,12 +106,6 @@ document.getElementById("Planning-btn").onclick = function(event){
     
     let reader = books.filter((b) => b.reading == "Planning");
     renderBooks(reader);
-//   reader.forEach(read => {
-//        let li = document.createElement('li');
-//        li.innerHTML = read.titleofbooks + "<br>" + read.author + "<br>" + read.genre;
-//        li.dataset.id = read.id;
-//        list.appendChild(li);
-//     });
 
 }
 //sort by finished
