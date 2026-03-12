@@ -34,6 +34,10 @@ h1{
     height: 25px;
     
 }
+
+#error-msg{
+   color: red;
+}
 .buttons{
     position: relative;
    padding-top: 25px;

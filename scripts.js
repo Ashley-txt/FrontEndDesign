@@ -31,8 +31,26 @@ document.getElementById("submit").onclick = function(event){
     let genre = document.getElementById("genre").value;
     let rate = Number(document.getElementById("rate").value) || 0;
 
-    //store values as obj -> add to arr
+    //add new book
     if(editId == null){
+        let newBook={
+            id: Date.now(),
+            "titleofbooks": title, 
+            "author": author, 
+            "reading": stat, 
+            "rating": rate,
+            "genre": genre
+        };
+        const duplicate = books.some(book => 
+        book.titleofbooks.toLowerCase() === newBook.titleofbooks.toLowerCase() &&
+        book.author.toLowerCase() === newBook.author.toLowerCase()
+    );
+    if(duplicate){
+        document.getElementById("error-msg").innerHTML =
+            "This book is already in your list.";
+            return;
+    }
+    document.getElementById("error-msg").textContent = "";
         books.push({
             id: Date.now(),
         "titleofbooks": title, 
@@ -42,7 +60,19 @@ document.getElementById("submit").onclick = function(event){
         "genre": genre
         });
     }else{      
+        //edit book
         let book = books.find(book => book.id === editId);
+        
+        const duplicate = books.some(element => 
+        element.titleofbooks.toLowerCase() === book.titleofbooks.toLowerCase() &&
+        book.author.toLowerCase() === book.author.toLowerCase()
+    );
+    if(duplicate){
+        document.getElementById("error-msg").innerHTML =
+            "This book is already in your list.";
+            return;
+    }
+    document.getElementById("error-msg").textContent = "";
         book.titleofbooks = title;
         book.author = author;
         book.genre = genre;
@@ -149,7 +179,6 @@ list.addEventListener("click", function(event){
 
     if(mode === "edit"){
         let book = books.find(book => book.id === id);
-        
         document.getElementById("title").value = book.titleofbooks;
         document.getElementById("author").value = book.author;
         document.getElementById("genre").value = book.genre;
