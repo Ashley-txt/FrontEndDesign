@@ -79,7 +79,7 @@ function renderBooks(filtered){
             read.titleofbooks + "<br>" + 
             "Author: " + read.author + "<br>" + 
             "Genre: " + read.genre + "<br>" + 
-            read.reading + "<br>" +
+            "Status: " + read.reading + "<br>" +
             "Rating: " + "⭐️".repeat(rating);
             li.dataset.id = read.id;
        list.appendChild(li);
