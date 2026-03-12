@@ -74,8 +74,8 @@ function renderBooks(filtered){
        let rating = Number(read.rating) || 0;
        li.innerHTML = 
             read.titleofbooks + "<br>" + 
-            read.author + "<br>" + 
-            read.genre + "<br>" + 
+            "Author: " + read.author + "<br>" + 
+            "Genre: " + read.genre + "<br>" + 
             read.reading + "<br>" +
             "Rating: " + "⭐️".repeat(rating);
             li.dataset.id = read.id;
