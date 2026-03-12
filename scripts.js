@@ -26,7 +26,7 @@ document.getElementById("submit").onclick = function(event){
     let stat = document.getElementById("reading-stat").value;
     let author = document.getElementById("author").value;
     let genre = document.getElementById("genre").value;
-    
+    let rate = Number(document.getElementById("rate").value) || 0;
 
     //store values as obj -> add to arr
     if(editId == null){
@@ -35,6 +35,7 @@ document.getElementById("submit").onclick = function(event){
         "titleofbooks": title, 
         "author": author, 
         "reading": stat, 
+        "rating": rate,
         "genre": genre
         });
     }else{      
@@ -42,10 +43,11 @@ document.getElementById("submit").onclick = function(event){
         book.titleofbooks = title;
         book.author = author;
         book.genre = genre;
+        book.rating = rate;
         book.reading = stat;
 
         editId = null;
-        renderBooks();
+       renderBooks(books);
     }
     renderBooks(books);
  
@@ -66,17 +68,20 @@ function renderBooks(filtered){
         filtered = books;
     }
     list.innerHTML = "";
-
+    
     filtered.forEach(read => {
        let li = document.createElement('li');
+       let rating = Number(read.rating) || 0;
        li.innerHTML = 
             read.titleofbooks + "<br>" + 
             read.author + "<br>" + 
             read.genre + "<br>" + 
-            read.reading;
+            read.reading + "<br>" +
+            "Rating: " + "⭐️".repeat(rating);
             li.dataset.id = read.id;
        list.appendChild(li);
     });
+    console.log(books);
 }
 
 //prints all books
@@ -152,28 +157,10 @@ console.log(books);
         popupFn();
 
     }
-    
 });
     
 
 
 window.onload = function(){
-
-    let list = document.getElementById("list");
-
-    books.forEach(book => {
-
-        let li = document.createElement("li");
-
-        li.innerHTML =
-        book.titleofbooks + "<br>" +
-        book.author + "<br>" +
-        book.genre + "<br>" +
-        book.reading;
-
-        li.dataset.id = book.id;
-
-        list.appendChild(li);
-    });
-
+    renderBooks();
 };
