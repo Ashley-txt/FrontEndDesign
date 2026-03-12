@@ -61,7 +61,10 @@ document.getElementById("cancel").onclick = function(){
     document.getElementById("popupBox").style.display = "block"; 
 }
 
-function renderBooks(filtered = books){
+function renderBooks(filtered){
+     if(!filtered){
+        filtered = books;
+    }
     list.innerHTML = "";
 
     filtered.forEach(read => {
