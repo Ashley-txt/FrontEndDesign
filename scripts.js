@@ -2,8 +2,11 @@ let list = document.getElementById('list')
 let editId = null;
 let bookList = document.getElementById("bookList");
 let mode = "view";
+let search = document.getElementById("search");
 
 let books = JSON.parse(localStorage.getItem("books")) || [];
+
+
 document.getElementById("delete").onclick = function(){
     bookList.innerHTML = "Delete:";
     mode = "delete";
@@ -133,7 +136,7 @@ list.addEventListener("click", function(event){
 
     if(!li) return;
     let id = Number(li.dataset.id);
-console.log(books);
+
     if(mode === "delete"){
         let result = confirm("Do you want to delete this book?");
 
@@ -159,7 +162,11 @@ console.log(books);
     }
 });
     
-
+search.addEventListener("input", function(){
+    var query = this.value.toLowerCase();
+    const filtered = books.filter(book => book.titleofbooks.toLowerCase().includes(query) || book.author.toLowerCase().includes(query));
+    renderBooks(filtered);
+})
 
 window.onload = function(){
     renderBooks();

@@ -19,6 +19,16 @@ h1{
     list-style-type: none;
     
 }
+.searchBar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+}
+#search{
+    width: 300px;
+    border-radius: 5px;
+}
 #op{
     width: 100px;
     height: 25px;
