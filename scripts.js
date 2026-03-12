@@ -82,8 +82,9 @@ function renderBooks(filtered){
 //prints all books
 document.getElementById("all").onclick = function(event){   
     event.preventDefault();
-    list.innerHTML = "";
     bookList.innerHTML = "All:"
+    list.innerHTML = "";
+    
     renderBooks(books);
    
 }
