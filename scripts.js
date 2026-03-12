@@ -4,7 +4,6 @@ let bookList = document.getElementById("bookList");
 let mode = "view";
 
 let books = JSON.parse(localStorage.getItem("books")) || [];
-
 document.getElementById("delete").onclick = function(){
     bookList.innerHTML = "Delete:";
     mode = "delete";
@@ -38,8 +37,7 @@ document.getElementById("submit").onclick = function(event){
         "reading": stat, 
         "genre": genre
         });
-    }else{
-        
+    }else{      
         let book = books.find(book => book.id === editId);
         book.titleofbooks = title;
         book.author = author;
@@ -63,7 +61,7 @@ document.getElementById("cancel").onclick = function(){
     document.getElementById("popupBox").style.display = "block"; 
 }
 
-function renderBooks(filtered){
+function renderBooks(filtered = books){
     list.innerHTML = "";
 
     filtered.forEach(read => {
@@ -118,12 +116,7 @@ document.getElementById("Finished-btn").onclick = function(event){
     
     let reader = books.filter((b) => b.reading == "Finished");
     renderBooks(reader);
-//   reader.forEach(read => {
-//        let li = document.createElement('li');
-//        li.innerHTML = read.titleofbooks + "<br>" + read.author + "<br>" + read.genre;
-//        li.dataset.id = read.id;
-//        list.appendChild(li);
-//     });
+
 }
 
 list.addEventListener("click", function(event){
